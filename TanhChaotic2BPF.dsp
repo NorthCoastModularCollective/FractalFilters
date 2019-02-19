@@ -1,7 +1,5 @@
 import("stdfaust.lib");
 
-process (x,fc,Q,g) = x : y
-letrec{
-	'y = fi.resonbp(fc,Q,0.5,ma.tanh(y'*(g)+_));
-};
+inputGain = 0.5;
+process (inputSignal,frequency,Q,g,phaseOffset) = fi.resonbp(frequency,Q,inputGain,inputSignal+_)~ma.tanh(phaseOffset+_*(g)); 
 			
